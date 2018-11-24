@@ -44,4 +44,13 @@ public class Operator extends User{
         
     }
     
+    /**
+     * Main for testing
+     * @param args 
+     */
+    public static void main(String[] args){
+        Operator op = new Operator();
+        op.showOptions();
+    }
+    
 }
