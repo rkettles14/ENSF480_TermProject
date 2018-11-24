@@ -1,5 +1,14 @@
 package ENSF480_TermProject;
 
 public class Server {
-    //singleton class.
+    private static Server instance;
+    
+    
+    public Server getInstance(){
+        if(instance != null){
+            instance = new Server();
+        }
+        return instance;
+    }
+    
 }
