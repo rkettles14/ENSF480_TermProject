@@ -1,6 +1,3 @@
-package ENSF480_TermProject;
-
-
 public  abstract class User {
     protected Server instance;
     

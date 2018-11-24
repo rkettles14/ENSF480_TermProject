@@ -1,5 +1,3 @@
-package ENSF480_TermProject;
-
 public class Server {
     private static Server instance;
     
