@@ -1,8 +1,11 @@
 import java.util.Vector;
+import java.util.Scanner;
+
 public class Server {
 	
     private static Server instance;
     public Vector<User> users;
+    
     private Server()
     {
     	
@@ -30,8 +33,10 @@ public class Server {
     	users.add(user);
     }
     
-    public Server getInstance(){
+    public static Server getInstance(){
+    
         if(instance != null){
+        	
             instance = new Server();
         }
         return instance;
@@ -39,6 +44,15 @@ public class Server {
     
     public static void main(String [] args)
     {
-    	
+    	Scanner stdin = new Scanner(System.in);
+    	User startup = new Opener();
+    	System.out.println("Welcome to the sunshine tropical paradise of Isle Delfino"
+    			+ "\nNew user or existing? type (1/2)");
+    	int i = stdin.nextInt();
+    		while(i !=1 && i != 2) {
+    		System.out.println("Listen to me you cunt bitch, \nNew user or existing? (1/2)");
+    		i = stdin.nextInt();
+    		}
+    	System.out.println("there ya fucken go");
     }
 }

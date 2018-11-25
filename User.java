@@ -3,13 +3,15 @@ import java.util.Scanner;
 
 public  abstract class User {
     protected Scanner stdin;
-    protected Server instance;
+    protected Server instance ;
     private String username;
     private String password;
     
    public User(){
+	  
        stdin = new Scanner(System.in);
-       instance.getInstance();
+      
+       Server.getInstance();
        
    }
     
