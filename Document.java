@@ -11,15 +11,17 @@
 public abstract class Document {
        protected String authorName;
        protected String path;
+       protected static int nextisbn = 0;
        protected int isbn;
        protected int stockCount;
        protected PublishStrategy publishStrategy;
 
-    public Document(String authorName, String path, int isbn, int stockCount) {
+    public Document(String authorName, String path, int stockCount) {
         this.authorName = authorName;
         this.path = path;
-        this.isbn = isbn;
+        this.isbn = nextisbn;
         this.stockCount = stockCount;
+        nextisbn ++;
     }
     
     public void setPublishStrategy(PublishStrategy strategy){

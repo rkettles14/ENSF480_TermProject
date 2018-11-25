@@ -10,9 +10,8 @@
  */
 public class Book extends Document{
     
-    
-    public Book(String authorName, String path, int isbn, int stockCount) {
-        super(authorName, path, isbn, stockCount);
+    public Book(String authorName, String path, int stockCount) {
+        super(authorName, path, stockCount);
         setPublishStrategy(new BookPublisher());
     }
     
