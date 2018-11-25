@@ -26,6 +26,7 @@ public class Server {
     			if(password == users.get(i).getPassword())
     				return users.get(i);
     	}
+    	System.out.println("Invalid Username/Password");
     	return null;
     }
     
@@ -44,17 +45,61 @@ public class Server {
     
     public static void main(String [] args)
     {
+    	String username;
+    	String password;
+    	int choice = 0;
+    	User user;
+    	
     	Scanner stdin = new Scanner(System.in);
-    	User startup = new Opener();
+    	//PROGRAM START
     	System.out.println("Welcome to the sunshine tropical paradise of Isle Delfino"
-    			+ "\nNew user or existing? type (1/2)");
-    	int i = stdin.nextInt();
-    		while(i !=1 && i != 2) {
-    		System.out.println("Listen to me you cunt bitch, \nNew user or existing? (1/2)");
-    		i = stdin.nextInt();
-    		}
-    	System.out.println("there ya fucken goo");
-        Operator op = new Operator();
-        op.showOptions();
+    			+ "\n all inputs and options will be dealt with by entering a number to select an option unless otherwise stated...");
+    	//INITIAL OPTIONS
+    		choice = loopForInput(2,  "Please select a User type:"
+    				+ "\nRegistered Buyer (1)"
+    				+ "\nOperator (2)"
+    				+ "\nSystemAdmin (3)"
+    				+ "\nManager (4)"
+    				+ "\nAuthor (5)"
+    				+ "\nBuyer (6)");
+    		
+    	if(choice == 1) {
+    		
+    	}
+    	
+    	else if(choice == 2) {
+    		User user = new Operator();
+    	}
+
+    	else if(choice == 3) {
+    		
+    	}
+
+    	else if(choice == 4) {
+    		
+    	}
+
+    	else if(choice == 5) {
+    		
+    	}
+
+    	else if(choice == 6) {
+    		User user = new Buyer();
+    	}
+    	
+    	user.showOptions();
+    	
     }
+}
+
+public static int loopForInput(int max, String str)
+{
+	Scanner stdin1 = new Scanner(System.in);
+	int i;
+	do {
+		System.out.println(str);
+		i = stdin1.nextInt();
+	}while(i > max);
+	
+	return i;
 }
