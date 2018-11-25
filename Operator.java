@@ -94,7 +94,40 @@ public class Operator extends User{
     }
     
     public void updateDocument(int targetISBN){
+        System.out.println("Updating document " + targetISBN + ".");
+        Document d = instance.database.getDocument(targetISBN);
+        String input = stdin.nextLine();
+        if(d == null){
+            System.out.println("Sorry, no document with that ISBN exists.");
+            return;
+        }
+        System.out.println("Would you like to change the Author's name? Y/N");
+        input = stdin.nextLine();
+        System.out.println(input);
+        if(input.matches("Y")){
+            System.out.println("What would you like to change their name to?");
+            input = stdin.nextLine();
+            d.setAuthorName(input);
+        }
         
+        System.out.println("Would you like to change the path to the document?");
+        input = stdin.nextLine();
+        if(input.matches("Y")){
+            System.out.println("What would you like to change the path to?");
+            input = stdin.nextLine();
+            d.setPath(input);
+        }
+        
+        System.out.println("Would you like to change the current stock of the Document?");
+        input = stdin.nextLine();
+        if(input.matches("Y")){
+            System.out.println("What is the new stock of the document?");
+            int inputInt = stdin.nextInt();
+            d.setStockCount(inputInt);
+        }
+        
+        System.out.println("Document has been updated. Displaying new values of document");
+        d.display();
     }
     @Override
     public void showOptions() {
@@ -114,13 +147,15 @@ public class Operator extends User{
             else if(input.matches("2")){
                 System.out.println("Type the ISBN of the document you would like to remove.");
                 int inputInt = stdin.nextInt();
-                
+                instance.database.removeDocument(inputInt);
                 break;
                 //call remove
 
             }
             else if(input.matches("3")){
-                System.out.println("implement later");
+                System.out.println("Please type the ISBN of the document that you would like to update.");
+                int inputInt = stdin.nextInt();
+                updateDocument(inputInt);
                 break;
                 //call update
             }
@@ -129,7 +164,8 @@ public class Operator extends User{
 
             }
         }
-        
+        stdin.reset();
+        showOptions();
     }
     
 }

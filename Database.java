@@ -11,6 +11,7 @@ public class Database {
     public void addDocument(Document d){
         documents.add(d);
         System.out.println("Document added");
+        System.out.println("The ISBN of the document added is " + d.getIsbn());
     }
     
     public void removeDocument(int targetISBN){
