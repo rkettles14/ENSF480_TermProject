@@ -104,22 +104,21 @@ public class Operator extends User{
         
         
         while(true){
-            String input = stdin.nextLine();
+            int i = stdin.nextInt();
         
-            if(input.matches("1")){
+            if(i == 1){
                 addDocument();
                 break;
                 //call add
             }
-            else if(input.matches("2")){
+            else if(i == 2){
                 System.out.println("Type the ISBN of the document you would like to remove.");
                 int inputInt = stdin.nextInt();
-                
                 break;
                 //call remove
 
             }
-            else if(input.matches("3")){
+            else if(i == 3){
                 System.out.println("implement later");
                 break;
                 //call update
@@ -128,6 +127,7 @@ public class Operator extends User{
                 System.out.println("invalid input.");
 
             }
+            stdin.close();
         }
         
     }
