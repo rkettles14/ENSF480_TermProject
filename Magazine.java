@@ -9,8 +9,9 @@
  * @author CHUCK
  */
 public class Magazine extends Document{
-    public Magazine(String authorName, String path, int isbn, int stockCount) {
-        super(authorName, path, isbn, stockCount);
+    
+    public Magazine(String authorName, String path, int stockCount) {
+        super(authorName, path, stockCount);
         setPublishStrategy(new MagazinePublisher());
     }
 }
