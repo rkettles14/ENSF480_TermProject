@@ -9,8 +9,8 @@
  * @author CHUCK
  */
 public class MagazinePublisher implements PublishStrategy{
-    
-    public void publish(String info){
-        System.out.println(info);
+    public String publishInfo = "Magazines can have art on the front. Will implement l8r";
+    public void publish(){
+        System.out.println(publishInfo);
     }
 }

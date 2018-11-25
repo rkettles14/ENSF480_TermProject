@@ -12,6 +12,5 @@ public class Magazine extends Document{
     public Magazine(String authorName, String path, int isbn, int stockCount) {
         super(authorName, path, isbn, stockCount);
         setPublishStrategy(new MagazinePublisher());
-        this.publishInfo = "Magazines can have art on the front. Will implement l8r";
     }
 }

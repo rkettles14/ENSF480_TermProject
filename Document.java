@@ -14,14 +14,12 @@ public abstract class Document {
        protected int isbn;
        protected int stockCount;
        protected PublishStrategy publishStrategy;
-       protected String publishInfo;
 
     public Document(String authorName, String path, int isbn, int stockCount) {
         this.authorName = authorName;
         this.path = path;
         this.isbn = isbn;
         this.stockCount = stockCount;
-        this.publishInfo = "Just a document. Something isn't working, this message shouldn't come up";
     }
     
     public void setPublishStrategy(PublishStrategy strategy){
@@ -29,7 +27,7 @@ public abstract class Document {
     }
     
     public void executeStrategy(){
-        publishStrategy.publish(publishInfo);
+        publishStrategy.publish();
     }
     public String getAuthorName() {
         return authorName;
