@@ -30,7 +30,7 @@ public class Server {
     	users.add(user);
     }
     
-    public Server getInstance(){
+    public static Server getInstance(){
         if(instance != null){
             instance = new Server();
         }

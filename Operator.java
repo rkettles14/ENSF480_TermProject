@@ -39,53 +39,53 @@ public class Operator extends User{
     
     public void addJournal(){
         
-        System.out.println("What is the author of your Journal?\n");
+        System.out.println("What is the author of your Journal?");
         String author = stdin.nextLine();
         
-        System.out.println("What is the filepath of your Journal?\n");
+        System.out.println("What is the filepath of your Journal?");
         String filepath = stdin.nextLine();
         
-        System.out.println("What is the initial stock of your Journal?\n");
+        System.out.println("What is the initial stock of your Journal?");
         int stock = stdin.nextInt();
         
         Journal journal = new Journal(author, filepath, stock);
         
-        System.out.printf("Made a journal, lets see if I did tho");
+        System.out.println("Made a journal, lets see if I did tho");
         journal.executeStrategy();
         
     }
     
     public void addBook(){
 
-        System.out.println("What is the author of your Book?\n");
+        System.out.println("What is the author of your Book?");
         String author = stdin.nextLine();
         
-        System.out.println("What is the filepath of your Book?\n");
+        System.out.println("What is the filepath of your Book?");
         String filepath = stdin.nextLine();
         
-        System.out.println("What is the initial stock of your Book?\n");
+        System.out.println("What is the initial stock of your Book?");
         int stock = stdin.nextInt();
         
         Book book = new Book(author, filepath, stock);
         
-        System.out.printf("Made a book, lets see if I did tho");
+        System.out.println("Made a book, lets see if I did tho");
         book.executeStrategy();
     }
     
     public void addMagazine(){
        
-        System.out.println("What is the author of your Magazine?\n");
+        System.out.println("What is the author of your Magazine?");
         String author = stdin.nextLine();
         
-        System.out.println("What is the filepath of your Magazine?\n");
+        System.out.println("What is the filepath of your Magazine?");
         String filepath = stdin.nextLine();
         
-        System.out.println("What is the initial stock of your Magazine?\n");
+        System.out.println("What is the initial stock of your Magazine?");
         int stock = stdin.nextInt();
         
         Magazine magazine = new Magazine(author, filepath, stock);
         
-        System.out.printf("Made a magazine, lets see if I did tho");
+        System.out.println("Made a magazine, lets see if I did tho");
         magazine.executeStrategy();
         
     }
@@ -100,7 +100,7 @@ public class Operator extends User{
             String input = stdin.nextLine();
         
             if(input.matches("1")){
-                System.out.println("What type of document would you like");
+                addDocument();
                 break;
                 //call add
             }
