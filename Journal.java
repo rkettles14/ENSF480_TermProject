@@ -12,7 +12,6 @@ public class Journal extends Document{
     public Journal(String authorName, String path, int isbn, int stockCount) {
         super(authorName, path, isbn, stockCount);
         setPublishStrategy(new JournalPublisher());
-        this.publishInfo = "Journals can have a font maybe?? idk. Will implement l8r";
     }
     
 }

@@ -14,7 +14,6 @@ public class Book extends Document{
     public Book(String authorName, String path, int isbn, int stockCount) {
         super(authorName, path, isbn, stockCount);
         setPublishStrategy(new BookPublisher());
-        this.publishInfo = "Books can be hard or soft covered. Will implement l8r";
     }
     
     

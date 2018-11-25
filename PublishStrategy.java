@@ -9,5 +9,5 @@
  * @author Zach Sims, Rylan Kettles, Brandon Khoo
  */
 public interface PublishStrategy {
-    abstract void publish(String info);
+    abstract void publish();
 }

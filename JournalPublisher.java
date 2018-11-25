@@ -9,8 +9,8 @@
  * @author CHUCK
  */
 public class JournalPublisher implements PublishStrategy{
-    
-    public void publish(String info){
-        System.out.println(info);
+    public String publishInfo = "Journals can have a font maybe?? idk. Will implement l8r";
+    public void publish(){
+        System.out.println(publishInfo);
     }
 }

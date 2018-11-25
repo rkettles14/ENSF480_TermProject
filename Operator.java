@@ -49,8 +49,14 @@ public class Operator extends User{
      * @param args 
      */
     public static void main(String[] args){
-        Operator op = new Operator();
-        op.showOptions();
+        //Operator op = new Operator(); Commented out by Zach
+        //op.showOptions(); Commented out by Zach
+        
+        Book testBook = new Book("Zaddy Sims", "Yer mums house", 69, 420);
+        testBook.executeStrategy();
+        System.out.printf("Imma make the book publish like a magazine now just 2 see\n");
+        testBook.setPublishStrategy(new MagazinePublisher());
+        testBook.executeStrategy();
     }
     
 }
