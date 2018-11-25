@@ -53,6 +53,6 @@ public class Server {
     		System.out.println("Listen to me you cunt bitch, \nNew user or existing? (1/2)");
     		i = stdin.nextInt();
     		}
-    	System.out.println("there ya fucken go");
+    	System.out.println("there ya fucken goo");
     }
 }
