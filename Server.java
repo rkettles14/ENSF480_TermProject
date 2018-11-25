@@ -5,10 +5,11 @@ public class Server {
 	
     private static Server instance;
     public Vector<User> users;
-    
+    public Database database;
     private Server()
     {
-    	
+    	users = new Vector<User>();
+        database = new Database();
     }
     
     private Server(Server src)
@@ -34,7 +35,7 @@ public class Server {
     }
     
     public static Server getInstance(){
-        if(instance != null){
+        if(instance == null){
         	
             instance = new Server();
         }
@@ -53,5 +54,7 @@ public class Server {
     		i = stdin.nextInt();
     		}
     	System.out.println("there ya fucken goo");
+        Operator op = new Operator();
+        op.showOptions();
     }
 }

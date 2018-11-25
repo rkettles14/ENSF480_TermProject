@@ -51,6 +51,7 @@ public class Operator extends User{
         Journal journal = new Journal(author, filepath, stock);
         
         System.out.println("Made a journal, lets see if I did tho");
+        instance.database.addDocument(journal);
         journal.executeStrategy();
         
     }
@@ -69,6 +70,7 @@ public class Operator extends User{
         Book book = new Book(author, filepath, stock);
         
         System.out.println("Made a book, lets see if I did tho");
+        instance.database.addDocument(book);
         book.executeStrategy();
     }
     
@@ -86,7 +88,12 @@ public class Operator extends User{
         Magazine magazine = new Magazine(author, filepath, stock);
         
         System.out.println("Made a magazine, lets see if I did tho");
+        instance.database.addDocument(magazine);
         magazine.executeStrategy();
+        
+    }
+    
+    public void updateDocument(int targetISBN){
         
     }
     @Override
@@ -105,7 +112,9 @@ public class Operator extends User{
                 //call add
             }
             else if(input.matches("2")){
-                System.out.println("implement later");
+                System.out.println("Type the ISBN of the document you would like to remove.");
+                int inputInt = stdin.nextInt();
+                
                 break;
                 //call remove
 
@@ -121,15 +130,6 @@ public class Operator extends User{
             }
         }
         
-    }
-    
-    /**
-     * Main for testing
-     * @param args 
-     */
-    public static void main(String[] args){
-        Operator op = new Operator();
-        op.showOptions();
     }
     
 }

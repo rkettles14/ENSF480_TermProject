@@ -11,7 +11,7 @@ public  abstract class User {
 	  
        stdin = new Scanner(System.in);
       
-       Server.getInstance();
+       instance = Server.getInstance();
        
    }
     
