@@ -9,19 +9,20 @@
  * @author Zach Sims, Rylan Kettles, Brandon Khoo
  */
 public abstract class Document {
+       protected String title;
        protected String authorName;
        protected String path;
-       protected static int nextisbn = 0;
+       //protected static int nextisbn = 0;
        protected int isbn;
        protected int stockCount;
        protected PublishStrategy publishStrategy;
 
-    public Document(String authorName, String path, int stockCount) {
+    public Document(String title, String authorName, int isbn, String path , int stockCount) {
+        this.title = title;
         this.authorName = authorName;
+        this.isbn = isbn;
         this.path = path;
-        this.isbn = nextisbn;
         this.stockCount = stockCount;
-        nextisbn ++;
     }
     
     public void setPublishStrategy(PublishStrategy strategy){

@@ -1,12 +1,60 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 
 public class Database {
     private ArrayList<Document> documents;
+    private Scanner scan;
+    private PrintWriter write;
+    
     public Database(){
-        documents = new ArrayList<Document>();
+        documents = new ArrayList();
+        File file = new File("Documents.txt"); 
+        System.out.println(file.getAbsolutePath());
+        try {
+            scan = new Scanner(file);
+        } 
+        catch (FileNotFoundException ex) {
+           ex.printStackTrace();
+        }
+        initializeDatabase();
+        scan.close();
+        
     }
+    
+    public void initializeDatabase(){
+        while(scan.hasNextLine()){
+            String type = scan.next();
+            String title = scan.next();
+            String author = scan.next();
+            int isbn = Integer.parseInt(scan.next());
+            String path = scan.next();
+            int stock = Integer.parseInt(scan.next());
+            
+            if(type.compareTo("B") == 0){
+                Book book = new Book(title, author, isbn, path, stock);
+                documents.add(book);
+            }
+            else if(type.compareTo("M") == 0){
+                Magazine mag = new Magazine(title, author, isbn, path, stock);
+                documents.add(mag);
+            }
+            else if(type.compareTo("J") == 0){
+                Journal journal = new Journal(title, author, isbn, path, stock);
+                documents.add(journal);
+            }
+        }
+    }
+
+    public ArrayList<Document> getDocuments() {
+        return documents;
+    }
+   
     
     public void addDocument(Document d){
         documents.add(d);
@@ -29,5 +77,14 @@ public class Database {
     
     //Todo updateDoc()?????
     
+    
+    /**
+     * Main for testing
+     * @param args 
+     */
+    public static void main(String[] args){
+       Database db = new Database();
+        System.out.println(db.getDocuments().size());
+    }
 }
 
