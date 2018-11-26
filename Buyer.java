@@ -57,11 +57,23 @@ public class Buyer extends User{
     
     public void makePayment(){
         System.out.println("These are all of the items in your cart: ");
+        double total = 0;
         for(Document d : cart){
             d.display();
+            total += d.getPrice();
         }
+        System.out.println("This comes to a total price of: " + total);
+        System.out.println("Please enter your credit card nmber");
+        int cardNum = Integer.parseInt(stdin.nextLine());
+        System.out.println("Please enter the name on your card: ");
+        String name = stdin.nextLine();
+        System.out.println("Please enter your billing address: ");
+        String billingInfo = stdin.nextLine();
         
-        
+        Transaction t = new Transaction(cart, cardNum, total, name, billingInfo);
+        System.out.println("\n\nCreated new transaction: \n");
+        t.display();
+        cart = new ArrayList<>();
     }
     
     public void searchForDocument(String query){
