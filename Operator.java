@@ -10,6 +10,12 @@ public class Operator extends User{
         
     }
     
+    public void removeDocument(){
+        System.out.println("Type the ISBN of the document you would like to remove.");
+        int inputInt = stdin.nextInt();
+        instance.database.removeDocument(inputInt);
+    }
+    
     public void addDocument(){
         System.out.println("What kind of document would you like to add\n");
         System.out.println("Type 'J' for Journal, 'B' for Book, or 'M' for Magazine\n");
@@ -188,12 +194,11 @@ public class Operator extends User{
                     addDocument();
                     System.out.println("\n");
                     break;
-                    //call add
                 }
+                
                 else if(input.matches("2")){
-                    System.out.println("Type the ISBN of the document you would like to remove.");
-                    int inputInt = stdin.nextInt();
-                    instance.database.removeDocument(inputInt);
+                    removeDocument();
+                    System.out.println("\n");
                     break;
                     //call remove
 
