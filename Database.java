@@ -30,7 +30,9 @@ public class Database {
         while(scan.hasNextLine()){
             String type = scan.next();
             String title = scan.next();
+            title = title.replace('_', ' ');
             String author = scan.next();
+            author = author.replace('_', ' ');
             int isbn = Integer.parseInt(scan.next());
             String path = scan.next();
             int stock = Integer.parseInt(scan.next());

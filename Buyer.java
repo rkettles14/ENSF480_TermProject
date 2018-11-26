@@ -52,10 +52,7 @@ public class Buyer extends User{
             return;
         }
         System.out.println("Search Results: ");
-        System.out.println("    Title: " + d.getTitle());
-        System.out.println("    Author: " + d.getAuthorName());
-        System.out.println("    ISBN: " + d.getIsbn());
-        System.out.println("    Number in stock: " + d.getStockCount()); 
+        d.display();
     }
     
 }
