@@ -104,7 +104,7 @@ public class Buyer extends User{
         if(d==null){
             return;
         }
-        System.out.println("Search Results: ");
+        System.out.println("\nSearch Results: ");
         d.display();
         
         System.out.println("\nWould you like to add this item to your cart? Y/N");
