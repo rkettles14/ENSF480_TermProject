@@ -7,12 +7,13 @@ public class Server {
     public Vector<User> users;
     public Database database;
     public Scanner stdin;
-    
+    public static BuyerNotifier notifier;
     private Server()
     {
     	users = new Vector<User>();
         database = new Database();
         stdin = new Scanner(System.in);
+        notifier = new BuyerNotifier();
     }
     
     private Server(Server src)

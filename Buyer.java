@@ -18,13 +18,16 @@ public class Buyer extends User{
     public ArrayList<Document> getCart() {
         return cart;
     }
-    
+    public void setCart(ArrayList<Document> cart){
+        this.cart = cart;
+    }
     
     @Override
     public void showOptions() {
-        while(true){
+        while(notquit){
             System.out.println("Enter 1 to search for document.");
             System.out.println("Enter 2 to make payment.");
+            System.out.println("Enter 3 to become a registered buyer");
             System.out.println("Enter 'Q' to quit");
             String input = stdin.nextLine();
             if(input.matches("Q")){
@@ -43,9 +46,12 @@ public class Buyer extends User{
                 else if(input.matches("2")){
                     makePayment();
                     break;
-
-
                 }
+                else if (input.matches("3")){
+                    makeRegisteredBuyer();
+                    break;
+                }
+                
                 else{
                     System.out.println("invalid input.");
                     break;
@@ -55,6 +61,22 @@ public class Buyer extends User{
         
     }
     
+    public void makeRegisteredBuyer(){
+        
+        System.out.println("Please enter your credit card number\n");
+        int cardNum = Integer.parseInt(stdin.nextLine());
+        System.out.println("Thank you, your card will be charged a subscription fee each month.");
+        RegisteredBuyer rb = new RegisteredBuyer();
+        rb.setSubject(instance.notifier);
+        instance.notifier.register(rb);
+        rb.setCart(this.getCart());
+        this.notquit = false;
+        instance.users.remove(this);
+        instance.users.add(rb);
+        rb.showOptions();
+        
+        
+    }
     public void makePayment(){
         System.out.println("These are all of the items in your cart: ");
         double total = 0;

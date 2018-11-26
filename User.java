@@ -6,12 +6,16 @@ public  abstract class User {
     protected Server instance ;
     private String username;
     private String password;
-    
+    protected boolean notquit;
    public User(){
        instance = Server.getInstance();
        stdin = instance.stdin;
+       notquit = true;
    }
     
+   public void endOptions(){
+       this.notquit = false;
+   }
    public void setPassword(String pass)
    {
 	   password = pass;
