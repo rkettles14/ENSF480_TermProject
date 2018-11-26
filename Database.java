@@ -15,7 +15,6 @@ public class Database {
     public Database(){
         documents = new ArrayList();
         File file = new File("Documents.txt"); 
-        System.out.println(file.getAbsolutePath());
         try {
             scan = new Scanner(file);
         } 
