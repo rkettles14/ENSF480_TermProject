@@ -79,6 +79,7 @@ public abstract class Document {
     public void display(){
         System.out.println("Title: " + title);
         System.out.println("Name of Author: " + authorName);
+        System.out.println("Price: " + price);
         System.out.println("Path to document: " + path);
         System.out.println("ISBN: " + isbn);
         System.out.println("Remaining Stock: " + stockCount);
