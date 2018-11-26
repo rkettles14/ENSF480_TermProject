@@ -1,9 +1,12 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 
 
@@ -11,10 +14,11 @@ public class Database {
     private ArrayList<Document> documents;
     private Scanner scan;
     private PrintWriter write;
+    private File file;
     
     public Database(){
         documents = new ArrayList();
-        File file = new File("Documents.txt"); 
+        file = new File("Documents.txt"); 
         try {
             scan = new Scanner(file);
         } 
@@ -30,21 +34,23 @@ public class Database {
         while(scan.hasNextLine()){
             String type = scan.next();
             String title = scan.next();
+            title = title.replace('_', ' ');
             String author = scan.next();
+            author = author.replace('_', ' ');
             int isbn = Integer.parseInt(scan.next());
             String path = scan.next();
             int stock = Integer.parseInt(scan.next());
             
             if(type.compareTo("B") == 0){
-                Book book = new Book(title, author, path, stock);
+                Book book = new Book(title, author, isbn, path, stock);
                 documents.add(book);
             }
             else if(type.compareTo("M") == 0){
-                Magazine mag = new Magazine(title, author, path, stock);
+                Magazine mag = new Magazine(title, author, isbn, path, stock);
                 documents.add(mag);
             }
             else if(type.compareTo("J") == 0){
-                Journal journal = new Journal(title, author, path, stock);
+                Journal journal = new Journal(title, author, isbn, path, stock);
                 documents.add(journal);
             }
         }
@@ -57,6 +63,20 @@ public class Database {
     
     public void addDocument(Document d){
         documents.add(d);
+        String titleInFile = d.getTitle().replace(' ', '_');
+        String authorInFile = d.getAuthorName().replace(' ', '_');
+        String newLine=("\n"+d.getType()+ "			" +titleInFile+"    " + authorInFile
+                            + "      "+  d.getIsbn() + "    "+ d.getPath()+ "    "+ d.getStockCount() );
+        try {
+            write = new PrintWriter(new FileWriter(file, true));
+            write.write(newLine);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        write.close();
         System.out.println("Document added");
         System.out.println("The ISBN of the document added is " + d.getIsbn());
     }
@@ -97,8 +117,9 @@ public class Database {
     public static void main(String[] args){
        Database db = new Database();
         System.out.println(db.getDocuments().size());
-        Document d = db.searchForDocument(0);
-        System.out.println(d.getTitle());
+//        Book d = new Book("New Title", "Rylan Kettles", "c:/myPath", 88);
+//        db.addDocument(d);
+        
     }
 }
 

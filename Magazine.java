@@ -10,8 +10,14 @@
  */
 public class Magazine extends Document{
     
-    public Magazine(String title, String authorName, String path, int stockCount) {
-        super(title, authorName, path, stockCount);
+    public Magazine(String title, String authorName, int isbn,  String path, int stockCount) {
+        super(title, authorName, isbn, path, stockCount);
         setPublishStrategy(new MagazinePublisher());
     }
+
+    @Override
+    public String getType() {
+        return "M";
+    }
+    
 }

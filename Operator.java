@@ -47,16 +47,16 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Journal?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Journal?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Journal?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Journal journal = new Journal(title, author, filepath, stock);
+        Journal journal = new Journal(title, author, isbn, filepath, stock);
         
         System.out.println("Made a journal, lets see if I did tho");
         instance.database.addDocument(journal);
@@ -74,16 +74,16 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Book?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Book?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Book?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Book book = new Book(title, author, filepath, stock);
+        Book book = new Book(title, author, isbn, filepath, stock);
         
         System.out.println("Made a book, lets see if I did tho");
         instance.database.addDocument(book);
@@ -100,16 +100,16 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Magazine?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Magazine?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Magazine?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Magazine magazine = new Magazine(title, author, filepath, stock);
+        Magazine magazine = new Magazine(title, author, isbn, filepath, stock);
         
         System.out.println("Made a magazine, lets see if I did tho");
         instance.database.addDocument(magazine);
@@ -163,40 +163,44 @@ public class Operator extends User{
     }
     @Override
     public void showOptions() {
-        stdin.reset();
-        System.out.println("Press 1 to add document.");
-        System.out.println("Press 2 to remove document.");
-        System.out.println("Press 3 to update document.");
-        
-        
         while(true){
+            stdin.reset();
+            System.out.println("Press 1 to add document.");
+            System.out.println("Press 2 to remove document.");
+            System.out.println("Press 3 to update document.");
+            System.out.println("Enter 'Q' to quit");
             String input = stdin.nextLine();
-        
-            if(input.matches("1")){
-                addDocument();
+            if(input.matches("Q")){
                 break;
-                //call add
             }
-            else if(input.matches("2")){
-                System.out.println("Type the ISBN of the document you would like to remove.");
-                int inputInt = stdin.nextInt();
-                instance.database.removeDocument(inputInt);
-                break;
-                //call remove
 
-            }
-            else if(input.matches("3")){
-                System.out.println("Please type the ISBN of the document that you would like to update.");
-                int inputInt = stdin.nextInt();
-                updateDocument(inputInt);
-                break;
-            }
-            else{
-                System.out.println("invalid input.");
+            while(true){
+                if(input.matches("1")){
+                    addDocument();
+                    System.out.println("\n");
+                    break;
+                    //call add
+                }
+                else if(input.matches("2")){
+                    System.out.println("Type the ISBN of the document you would like to remove.");
+                    int inputInt = stdin.nextInt();
+                    instance.database.removeDocument(inputInt);
+                    break;
+                    //call remove
+
+                }
+                else if(input.matches("3")){
+                    System.out.println("Please type the ISBN of the document that you would like to update.");
+                    int inputInt = stdin.nextInt();
+                    updateDocument(inputInt);
+                    break;
+                }
+                else{
+                    System.out.println("invalid input.");
+                    break;
+                }
             }
         }
-        stdin.reset();
-        showOptions();
     }
     
 }
