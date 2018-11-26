@@ -12,7 +12,7 @@ public class Operator extends User{
     
     public void removeDocument(){
         System.out.println("Type the ISBN of the document you would like to remove.");
-        int inputInt = stdin.nextInt();
+        int inputInt = Integer.parseInt(stdin.nextLine());
         instance.database.removeDocument(inputInt);
     }
     
