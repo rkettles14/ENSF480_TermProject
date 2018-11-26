@@ -98,7 +98,7 @@ public class Server {
     	//should never get here
     	else 
     		user = new Buyer();
-    	
+    	stdin1.close();
     	user.showOptions();
     
     	

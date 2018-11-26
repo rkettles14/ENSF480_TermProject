@@ -131,20 +131,21 @@ public class Operator extends User{
     }
     @Override
     public void showOptions() {
+        stdin.reset();
         System.out.println("Press 1 to add document.");
         System.out.println("Press 2 to remove document.");
         System.out.println("Press 3 to update document.");
         
         
         while(true){
-            int i = stdin.nextInt();
+            String input = stdin.nextLine();
         
-            if(i == 1){
+            if(input.matches("1")){
                 addDocument();
                 break;
                 //call add
             }
-            else if(i == 2){
+            else if(input.matches("2")){
                 System.out.println("Type the ISBN of the document you would like to remove.");
                 int inputInt = stdin.nextInt();
                 instance.database.removeDocument(inputInt);
@@ -156,16 +157,11 @@ public class Operator extends User{
                 System.out.println("Please type the ISBN of the document that you would like to update.");
                 int inputInt = stdin.nextInt();
                 updateDocument(inputInt);
-            else if(i == 3){
-                System.out.println("implement later");
                 break;
-                //call update
             }
             else{
                 System.out.println("invalid input.");
-
             }
-            stdin.close();
         }
         stdin.reset();
         showOptions();
