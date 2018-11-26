@@ -197,6 +197,7 @@ public class Operator extends User{
                 }
                 else{
                     System.out.println("invalid input.");
+                    break;
                 }
             }
         }

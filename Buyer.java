@@ -2,7 +2,7 @@
 
 /**
  *
- * @author Rylan, Zach Brandon
+ * @author Rylan, Zach, Brandon
  */
 public class Buyer extends User{
     
@@ -44,7 +44,7 @@ public class Buyer extends User{
                 }
                 else{
                     System.out.println("invalid input.");
-
+                    break;
                 }
             }
         }
