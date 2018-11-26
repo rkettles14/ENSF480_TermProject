@@ -9,8 +9,8 @@
  * @author CHUCK
  */
 public class Journal extends Document{
-    public Journal(String title, String authorName, int isbn, String path, int stockCount) {
-        super(title, authorName,isbn, path, stockCount);
+    public Journal(String title, String authorName, double price, int isbn, String path, int stockCount) {
+        super(title, authorName, price, isbn, path, stockCount);
         setPublishStrategy(new JournalPublisher());
     }
 

@@ -8,15 +8,17 @@ public abstract class Document {
        protected String path;
        protected int isbn;
        protected int stockCount;
+       protected double price;
        protected PublishStrategy publishStrategy;
        public abstract String getType();
 
-    public Document(String title, String authorName, int isbn, String path , int stockCount) {
+    public Document(String title, String authorName, double price, int isbn, String path , int stockCount) {
         this.title = title;
         this.authorName = authorName;
         this.isbn = isbn;
         this.path = path;
         this.stockCount = stockCount;
+        this.price = price;
     }
     
     public void setPublishStrategy(PublishStrategy strategy){
@@ -64,6 +66,14 @@ public abstract class Document {
 
     public void setStockCount(int stockCount) {
         this.stockCount = stockCount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
     
     public void display(){

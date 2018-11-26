@@ -46,6 +46,9 @@ public class Operator extends User{
         System.out.println("What is the author of your Journal?\n");
         String author = stdin.nextLine();
         
+        System.out.println("What is the price of your journal?\n");
+        double price = Double.parseDouble(stdin.nextLine());
+        
         System.out.println("What is the ISBN of your Journal?\n");
         int isbn = Integer.parseInt(stdin.nextLine());
         
@@ -56,7 +59,7 @@ public class Operator extends User{
         int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Journal journal = new Journal(title, author, isbn, filepath, stock);
+        Journal journal = new Journal(title, author, price, isbn, filepath, stock);
         
         System.out.println("Made a journal, lets see if I did tho");
         instance.database.addDocument(journal);
@@ -73,6 +76,9 @@ public class Operator extends User{
         System.out.println("What is the author of your Book?\n");
         String author = stdin.nextLine();
         
+        System.out.println("What is the price of your Book?\n");
+        double price = Double.parseDouble(stdin.nextLine());
+        
         System.out.println("What is the ISBN of your Book?\n");
         int isbn = Integer.parseInt(stdin.nextLine());
         
@@ -83,7 +89,7 @@ public class Operator extends User{
         int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Book book = new Book(title, author, isbn, filepath, stock);
+        Book book = new Book(title, author, price, isbn, filepath, stock);
         
         System.out.println("Made a book, lets see if I did tho");
         instance.database.addDocument(book);
@@ -99,6 +105,9 @@ public class Operator extends User{
         System.out.println("What is the author of your Magazine?\n");
         String author = stdin.nextLine();
         
+        System.out.println("What is the price of your Magazine?\n");
+        double price = Double.parseDouble(stdin.nextLine()); 
+        
         System.out.println("What is the ISBN of your Magazine?\n");
         int isbn = Integer.parseInt(stdin.nextLine());
         
@@ -109,7 +118,7 @@ public class Operator extends User{
         int stock = Integer.parseInt(stdin.nextLine());
 
         
-        Magazine magazine = new Magazine(title, author, isbn, filepath, stock);
+        Magazine magazine = new Magazine(title, author, price, isbn, filepath, stock);
         
         System.out.println("Made a magazine, lets see if I did tho");
         instance.database.addDocument(magazine);

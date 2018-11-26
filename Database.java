@@ -38,20 +38,21 @@ public class Database {
             title = title.replace('_', ' ');
             String author = scan.next();
             author = author.replace('_', ' ');
+            double price = Double.parseDouble(scan.next());
             int isbn = Integer.parseInt(scan.next());
             String path = scan.next();
             int stock = Integer.parseInt(scan.next());
             
             if(type.compareTo("B") == 0){
-                Book book = new Book(title, author, isbn, path, stock);
+                Book book = new Book(title, author, price, isbn, path, stock);
                 documents.add(book);
             }
             else if(type.compareTo("M") == 0){
-                Magazine mag = new Magazine(title, author, isbn, path, stock);
+                Magazine mag = new Magazine(title, author, price, isbn, path, stock);
                 documents.add(mag);
             }
             else if(type.compareTo("J") == 0){
-                Journal journal = new Journal(title, author, isbn, path, stock);
+                Journal journal = new Journal(title, author, price, isbn, path, stock);
                 documents.add(journal);
             }
         }
@@ -65,7 +66,7 @@ public class Database {
         String titleInFile = d.getTitle().replace(' ', '_');
         String authorInFile = d.getAuthorName().replace(' ', '_');
         String docString=("\n"+d.getType()+ "			" +titleInFile+"    " + authorInFile
-                            + "      "+  d.getIsbn() + "    "+ d.getPath()+ "    "+ d.getStockCount() );
+                            + "      "+ d.getPrice() + "      " + d.getIsbn() + "    "+ d.getPath()+ "    "+ d.getStockCount() );
         return docString;
     }
     

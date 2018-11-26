@@ -45,7 +45,7 @@ public class RegisteredBuyer extends Buyer implements Observer{
         BuyerNotifier bn = new BuyerNotifier();
         bn.register(rb);
         rb.setSubject(bn);
-        Book book = new Book("Cool Books r Cool", "Dick Cockfield", 10, "Yermumshouse", 69);
+        Book book = new Book("Cool Books r Cool", "Dick Cockfield", 69.69, 10, "Yermumshouse", 69);
         ArrayList<Document> promos = new ArrayList<>();
         promos.add(book);
         bn.addPromotion(new Promotion(promos, 0.8));
