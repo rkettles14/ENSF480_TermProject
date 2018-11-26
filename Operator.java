@@ -56,7 +56,7 @@ public class Operator extends User{
         int stock = Integer.getInteger(stdin.nextLine());
 
         
-        Journal journal = new Journal(title, author, isbn, filepath, stock);
+        Journal journal = new Journal(title, author, filepath, stock);
         
         System.out.println("Made a journal, lets see if I did tho");
         instance.database.addDocument(journal);
@@ -83,7 +83,7 @@ public class Operator extends User{
         int stock = Integer.getInteger(stdin.nextLine());
 
         
-        Book book = new Book(title, author, isbn, filepath, stock);
+        Book book = new Book(title, author, filepath, stock);
         
         System.out.println("Made a book, lets see if I did tho");
         instance.database.addDocument(book);
@@ -109,7 +109,7 @@ public class Operator extends User{
         int stock = Integer.getInteger(stdin.nextLine());
 
         
-        Magazine magazine = new Magazine(title, author, isbn, filepath, stock);
+        Magazine magazine = new Magazine(title, author, filepath, stock);
         
         System.out.println("Made a magazine, lets see if I did tho");
         instance.database.addDocument(magazine);
@@ -125,19 +125,27 @@ public class Operator extends User{
             System.out.println("Sorry, no document with that ISBN exists.");
             return;
         }
+        
+        System.out.println("Would you like to change the title? Y/N");
+        input = stdin.nextLine();
+        if(input.matches("Y")){
+            System.out.println("What would you like to change the title to?");
+            input = stdin.nextLine();
+            d.setTitle(input);
+        }
+        
         System.out.println("Would you like to change the Author's name? Y/N");
         input = stdin.nextLine();
-        System.out.println(input);
         if(input.matches("Y")){
-            System.out.println("What would you like to change their name to?");
+            System.out.println("What would you like to change their name to? Y/N");
             input = stdin.nextLine();
             d.setAuthorName(input);
         }
         
-        System.out.println("Would you like to change the path to the document?");
+        System.out.println("Would you like to change the path to the document?, Y/N");
         input = stdin.nextLine();
         if(input.matches("Y")){
-            System.out.println("What would you like to change the path to?");
+            System.out.println("What would you like to change the path to?, Y/N");
             input = stdin.nextLine();
             d.setPath(input);
         }

@@ -12,15 +12,15 @@ public abstract class Document {
        protected String title;
        protected String authorName;
        protected String path;
-       //protected static int nextisbn = 0;
+       protected static int nextisbn = 0;
        protected int isbn;
        protected int stockCount;
        protected PublishStrategy publishStrategy;
 
-    public Document(String title, String authorName, int isbn, String path , int stockCount) {
+    public Document(String title, String authorName, String path , int stockCount) {
         this.title = title;
         this.authorName = authorName;
-        this.isbn = isbn;
+        this.isbn = nextisbn ++;
         this.path = path;
         this.stockCount = stockCount;
     }
@@ -54,6 +54,14 @@ public abstract class Document {
 
     public void setIsbn(int isbn) {
         this.isbn = isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getStockCount() {
