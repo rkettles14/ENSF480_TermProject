@@ -39,6 +39,7 @@ public class Operator extends User{
     
     public void addJournal(){
         
+
          System.out.println("What is the title of your Journal?\n");
         String title = stdin.nextLine();
         
@@ -53,15 +54,18 @@ public class Operator extends User{
         
         System.out.println("What is the stock of your Journal?\n");
         int stock = Integer.getInteger(stdin.nextLine());
+
         
         Journal journal = new Journal(title, author, isbn, filepath, stock);
         
-        System.out.printf("Made a journal, lets see if I did tho");
+        System.out.println("Made a journal, lets see if I did tho");
+        instance.database.addDocument(journal);
         journal.executeStrategy();
         
     }
     
     public void addBook(){
+
 
         System.out.println("What is the title of your Book?\n");
         String title = stdin.nextLine();
@@ -77,15 +81,18 @@ public class Operator extends User{
         
         System.out.println("What is the stock of your Book?\n");
         int stock = Integer.getInteger(stdin.nextLine());
+
         
         Book book = new Book(title, author, isbn, filepath, stock);
         
-        System.out.printf("Made a book, lets see if I did tho");
+        System.out.println("Made a book, lets see if I did tho");
+        instance.database.addDocument(book);
         book.executeStrategy();
     }
     
     public void addMagazine(){
        
+
         System.out.println("What is the title of your Magazine?\n");
         String title = stdin.nextLine();
         
@@ -100,15 +107,55 @@ public class Operator extends User{
         
         System.out.println("What is the stock of your Magazine?\n");
         int stock = Integer.getInteger(stdin.nextLine());
+
         
         Magazine magazine = new Magazine(title, author, isbn, filepath, stock);
         
-        System.out.printf("Made a magazine, lets see if I did tho");
+        System.out.println("Made a magazine, lets see if I did tho");
+        instance.database.addDocument(magazine);
         magazine.executeStrategy();
         
     }
+    
+    public void updateDocument(int targetISBN){
+        System.out.println("Updating document " + targetISBN + ".");
+        Document d = instance.database.getDocument(targetISBN);
+        String input = stdin.nextLine();
+        if(d == null){
+            System.out.println("Sorry, no document with that ISBN exists.");
+            return;
+        }
+        System.out.println("Would you like to change the Author's name? Y/N");
+        input = stdin.nextLine();
+        System.out.println(input);
+        if(input.matches("Y")){
+            System.out.println("What would you like to change their name to?");
+            input = stdin.nextLine();
+            d.setAuthorName(input);
+        }
+        
+        System.out.println("Would you like to change the path to the document?");
+        input = stdin.nextLine();
+        if(input.matches("Y")){
+            System.out.println("What would you like to change the path to?");
+            input = stdin.nextLine();
+            d.setPath(input);
+        }
+        
+        System.out.println("Would you like to change the current stock of the Document?");
+        input = stdin.nextLine();
+        if(input.matches("Y")){
+            System.out.println("What is the new stock of the document?");
+            int inputInt = stdin.nextInt();
+            d.setStockCount(inputInt);
+        }
+        
+        System.out.println("Document has been updated. Displaying new values of document");
+        d.display();
+    }
     @Override
     public void showOptions() {
+        stdin.reset();
         System.out.println("Press 1 to add document.");
         System.out.println("Press 2 to remove document.");
         System.out.println("Press 3 to update document.");
@@ -118,36 +165,30 @@ public class Operator extends User{
             String input = stdin.nextLine();
         
             if(input.matches("1")){
-                System.out.println("What type of document would you like");
+                addDocument();
                 break;
                 //call add
             }
             else if(input.matches("2")){
-                System.out.println("implement later");
+                System.out.println("Type the ISBN of the document you would like to remove.");
+                int inputInt = stdin.nextInt();
+                instance.database.removeDocument(inputInt);
                 break;
                 //call remove
 
             }
             else if(input.matches("3")){
-                System.out.println("implement later");
+                System.out.println("Please type the ISBN of the document that you would like to update.");
+                int inputInt = stdin.nextInt();
+                updateDocument(inputInt);
                 break;
-                //call update
             }
             else{
                 System.out.println("invalid input.");
-
             }
         }
-        
-    }
-    
-    /**
-     * Main for testing
-     * @param args 
-     */
-    public static void main(String[] args){
-        Operator op = new Operator();
-        op.showOptions();
+        stdin.reset();
+        showOptions();
     }
     
 }

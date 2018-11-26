@@ -8,11 +8,8 @@ public  abstract class User {
     private String password;
     
    public User(){
-	  
-       stdin = new Scanner(System.in);
-      
-       Server.getInstance();
-       
+       instance = Server.getInstance();
+       stdin = instance.stdin;
    }
     
    public void setPassword(String pass)
