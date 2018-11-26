@@ -6,10 +6,13 @@ public class Server {
     private static Server instance;
     public Vector<User> users;
     public Database database;
+    public Scanner stdin;
+    
     private Server()
     {
     	users = new Vector<User>();
         database = new Database();
+        stdin = new Scanner(System.in);
     }
     
     private Server(Server src)
@@ -52,6 +55,7 @@ public class Server {
     {
     	String username;
     	String password;
+        Server server = new Server();
     	int choice = 0;
     	User user;;
     	
@@ -62,7 +66,7 @@ public class Server {
     	//INITIAL OPTIONS
     	
     	
-    		choice = loopForInput(6,  "Please select a User type:"
+    		choice = server.loopForInput(6,  "Please select a User type:"
     				+ "\nRegistered Buyer (1)"
     				+ "\nOperator (2)"
     				+ "\nSystemAdmin (3)"
@@ -98,22 +102,19 @@ public class Server {
     	//should never get here
     	else 
     		user = new Buyer();
-    	stdin1.close();
     	user.showOptions();
     
     	
     }
 
 
-public static int loopForInput(int max, String str)
+public int loopForInput(int max, String str)
 {
-	Scanner stdin1 = new Scanner(System.in);
 	int i;
 	do {
 		System.out.println(str);
-		i = stdin1.nextInt();
+		i = stdin.nextInt();
 	}while(i > max);
-	stdin1.close();
 	return i;
 	
  }
