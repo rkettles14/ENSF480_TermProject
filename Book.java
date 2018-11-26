@@ -14,6 +14,11 @@ public class Book extends Document{
         super(title, authorName, path, stockCount);
         setPublishStrategy(new BookPublisher());
     }
+
+    @Override
+    public String getType() {
+        return "B";
+    }
     
     
 }

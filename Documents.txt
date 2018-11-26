@@ -1,4 +1,4 @@
 B			Moby_Dick						Herman_Melville			1234		c:/SomePath					69
-B			Life_of_Pi						‎Yann Martel				6969		c:/SomeOtherPath			42
+B			Life_of_Pi						‎Yann_Martel				6969		c:/SomeOtherPath			42
 M			Cats_Yeetly						Mike_Smith				1918		c:/AnotherPath				12
 J			American_Journal_of_Journals	Tim_Journal				4200		c:/YetAnotherPath			13

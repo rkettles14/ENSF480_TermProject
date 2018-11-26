@@ -14,4 +14,10 @@ public class Magazine extends Document{
         super(title, authorName, path, stockCount);
         setPublishStrategy(new MagazinePublisher());
     }
+
+    @Override
+    public String getType() {
+        return "M";
+    }
+    
 }

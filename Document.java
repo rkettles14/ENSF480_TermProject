@@ -16,6 +16,7 @@ public abstract class Document {
        protected int isbn;
        protected int stockCount;
        protected PublishStrategy publishStrategy;
+       public abstract String getType();
 
     public Document(String title, String authorName, String path , int stockCount) {
         this.title = title;

@@ -47,13 +47,13 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Journal?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Journal?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Journal?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
         Journal journal = new Journal(title, author, filepath, stock);
@@ -74,13 +74,13 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Book?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Book?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Book?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
         Book book = new Book(title, author, filepath, stock);
@@ -100,13 +100,13 @@ public class Operator extends User{
         String author = stdin.nextLine();
         
         System.out.println("What is the ISBN of your Magazine?\n");
-        int isbn = Integer.getInteger(stdin.nextLine());
+        int isbn = Integer.parseInt(stdin.nextLine());
         
         System.out.println("What is the filepath of your Magazine?\n");
         String filepath = stdin.nextLine();
         
         System.out.println("What is the stock of your Magazine?\n");
-        int stock = Integer.getInteger(stdin.nextLine());
+        int stock = Integer.parseInt(stdin.nextLine());
 
         
         Magazine magazine = new Magazine(title, author, filepath, stock);

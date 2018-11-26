@@ -13,5 +13,10 @@ public class Journal extends Document{
         super(title, authorName, path, stockCount);
         setPublishStrategy(new JournalPublisher());
     }
+
+    @Override
+    public String getType() {
+        return "J";
+    }
     
 }
