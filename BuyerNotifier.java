@@ -17,8 +17,8 @@ public class BuyerNotifier implements Subject{
     private ArrayList<Promotion> promotions;
 
     public BuyerNotifier() {
-        customers = new ArrayList<Observer>();
-        promotions = new ArrayList<Promotion>();
+        customers = new ArrayList<>();
+        promotions = new ArrayList<>();
     }
     
     

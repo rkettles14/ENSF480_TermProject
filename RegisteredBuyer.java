@@ -36,13 +36,17 @@ public class RegisteredBuyer extends Buyer implements Observer{
         }
     }
     
+    public void unsubscribe(){
+        notifier.unregister(this);
+    }
+    
     public static void main(String []args){
         RegisteredBuyer rb = new RegisteredBuyer();
         BuyerNotifier bn = new BuyerNotifier();
         bn.register(rb);
         rb.setSubject(bn);
-        Book book = new Book("Cool Books r Cool", 10, "Dick Cockfield", "Yermumshouse", 69);
-        ArrayList<Document> promos = new ArrayList<Document>();
+        Book book = new Book("Cool Books r Cool", "Dick Cockfield", 10, "Yermumshouse", 69);
+        ArrayList<Document> promos = new ArrayList<>();
         promos.add(book);
         bn.addPromotion(new Promotion(promos, 0.8));
         rb.browsePromotions();
