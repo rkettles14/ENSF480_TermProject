@@ -42,15 +42,15 @@ public class Database {
             int stock = Integer.parseInt(scan.next());
             
             if(type.compareTo("B") == 0){
-                Book book = new Book(title, author, path, stock);
+                Book book = new Book(title, author, isbn, path, stock);
                 documents.add(book);
             }
             else if(type.compareTo("M") == 0){
-                Magazine mag = new Magazine(title, author, path, stock);
+                Magazine mag = new Magazine(title, author, isbn, path, stock);
                 documents.add(mag);
             }
             else if(type.compareTo("J") == 0){
-                Journal journal = new Journal(title, author, path, stock);
+                Journal journal = new Journal(title, author, isbn, path, stock);
                 documents.add(journal);
             }
         }
