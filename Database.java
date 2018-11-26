@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 
@@ -83,11 +82,9 @@ public class Database {
             e.printStackTrace();
         }
         write.close();
-        System.out.println("Document added");
-        System.out.println("The ISBN of the document added is " + d.getIsbn());
     }
     
-    public void removeDocument(int targetISBN){
+    public int removeDocument(int targetISBN){
         boolean isFound = false;
         for(int i = 0; i< documents.size(); i++){
             if(documents.get(i).getIsbn() == targetISBN){
@@ -97,17 +94,19 @@ public class Database {
             
         }
         if(isFound == false){
-            System.out.println("File could not be removed because it does not exist");
-            return;
+            return -1;
         }
-        
+        writeListToFile();
+        return 1;
+    }
+    
+    public void writeListToFile(){
         String arr[] = new String[documents.size()];
         for(int i = 0; i< documents.size(); i++){
             String docString = docToString(documents.get(i));
             arr[i] = docString;          
         }
         arr[0] = arr[0].replaceFirst("\n", "");
-        
         try {
             write = new PrintWriter(new FileWriter(file, false));
             for(int i = 0; i <documents.size(); i++){
@@ -123,12 +122,8 @@ public class Database {
         }
         
         write.close();
-        System.out.println("Document removed.");
-        return;
     }
     
-    //This is all we need in order to be able to update documents.
-    //The actual updating can be done on my end in Operator. ~Z
     public Document searchForDocument(int targetISBN){
         Document d = null;
         for(int i = 0; i < documents.size(); i ++){
@@ -141,7 +136,7 @@ public class Database {
         System.out.println("Could not find document, sorry chef.");
         return d;
     }
-    
+        
     
     /**
      * Main for testing

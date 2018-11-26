@@ -10,6 +10,17 @@ public class Operator extends User{
         
     }
     
+    public void removeDocument(){
+        System.out.println("Type the ISBN of the document you would like to remove.");
+        int inputInt = Integer.parseInt(stdin.nextLine());
+        if(instance.database.removeDocument(inputInt) == -1){
+            System.out.println("File could not be removed because it does not exist");
+        }
+        else if(instance.database.removeDocument(inputInt) == -1){
+            System.out.println("Document removed.");
+        }
+    }
+    
     public void addDocument(){
         System.out.println("What kind of document would you like to add\n");
         System.out.println("Type 'J' for Journal, 'B' for Book, or 'M' for Magazine\n");
@@ -63,6 +74,7 @@ public class Operator extends User{
         
         System.out.println("Made a journal, lets see if I did tho");
         instance.database.addDocument(journal);
+        System.out.println("Document added");
         journal.executeStrategy();
         
     }
@@ -167,8 +179,12 @@ public class Operator extends User{
             d.setStockCount(inputInt);
         }
         
+        instance.getDatabase().removeDocument(targetISBN);
+        instance.getDatabase().addDocument(d);
+        
         System.out.println("Document has been updated. Displaying new values of document");
         d.display();
+        
     }
     @Override
     public void showOptions() {
@@ -188,20 +204,19 @@ public class Operator extends User{
                     addDocument();
                     System.out.println("\n");
                     break;
-                    //call add
                 }
+                
                 else if(input.matches("2")){
-                    System.out.println("Type the ISBN of the document you would like to remove.");
-                    int inputInt = stdin.nextInt();
-                    instance.database.removeDocument(inputInt);
+                    removeDocument();
+                    System.out.println("\n");
                     break;
-                    //call remove
 
                 }
                 else if(input.matches("3")){
                     System.out.println("Please type the ISBN of the document that you would like to update.");
                     int inputInt = stdin.nextInt();
                     updateDocument(inputInt);
+                    System.out.println("\n");
                     break;
                 }
                 else{
