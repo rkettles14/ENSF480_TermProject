@@ -76,7 +76,7 @@ public class Database {
     
     //This is all we need in order to be able to update documents.
     //The actual updating can be done on my end in Operator. ~Z
-    public Document getDocument(int targetISBN){
+    public Document searchForDocument(int targetISBN){
         Document d = null;
         for(int i = 0; i < documents.size(); i ++){
             if(documents.get(i).getIsbn() == targetISBN){
@@ -85,7 +85,7 @@ public class Database {
             }
         }
         
-        System.out.println("Coulnd not find document, sorry chef.");
+        System.out.println("Could not find document, sorry chef.");
         return d;
     }
     
@@ -97,6 +97,8 @@ public class Database {
     public static void main(String[] args){
        Database db = new Database();
         System.out.println(db.getDocuments().size());
+        Document d = db.searchForDocument(0);
+        System.out.println(d.getTitle());
     }
 }
 

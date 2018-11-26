@@ -20,6 +20,12 @@ public class Server {
     	this.users = src.users;
     	this.instance = src.instance;
     }
+
+    public Database getDatabase() {
+        return database;
+    }
+    
+    
     
     public User validate(String username, String password)
     {

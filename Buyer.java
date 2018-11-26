@@ -12,7 +12,7 @@ public class Buyer extends User{
 
     @Override
     public void showOptions() {
-         System.out.println("Press 1 to search for document.");
+        System.out.println("Press 1 to search for document.");
         System.out.println("Press 2 to place an order.");
         System.out.println("Press 3 to make payment.");
         
@@ -21,20 +21,21 @@ public class Buyer extends User{
             String input = stdin.nextLine();
         
             if(input.matches("1")){
-                System.out.println("implement later");
+                System.out.println("Please enter the ISBN of the document you wish to search for");
+                searchForDocument(stdin.nextLine());
                 break;
-                //call add
+                
             }
             else if(input.matches("2")){
                 System.out.println("implement later");
                 break;
-                //call remove
+                
 
             }
             else if(input.matches("3")){
                 System.out.println("implement later");
                 break;
-                //call update
+                
             }
             else{
                 System.out.println("invalid input.");
@@ -42,6 +43,19 @@ public class Buyer extends User{
             }
         }
         
+    }
+    
+    public void searchForDocument(String query){
+        int target = Integer.parseInt(query);
+        Document d = instance.getDatabase().searchForDocument(target);
+        if(d==null){
+            return;
+        }
+        System.out.println("Search Results: ");
+        System.out.println("    Title: " + d.getTitle());
+        System.out.println("    Author: " + d.getAuthorName());
+        System.out.println("    ISBN: " + d.getIsbn());
+        System.out.println("    Number in stock: " + d.getStockCount()); 
     }
     
 }

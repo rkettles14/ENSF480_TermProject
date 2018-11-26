@@ -119,7 +119,7 @@ public class Operator extends User{
     
     public void updateDocument(int targetISBN){
         System.out.println("Updating document " + targetISBN + ".");
-        Document d = instance.database.getDocument(targetISBN);
+        Document d = instance.database.searchForDocument(targetISBN);
         String input = stdin.nextLine();
         if(d == null){
             System.out.println("Sorry, no document with that ISBN exists.");
