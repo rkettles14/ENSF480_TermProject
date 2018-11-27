@@ -82,6 +82,7 @@ public class Buyer extends User{
         double total = 0;
         for(Document d : cart){
             d.display();
+            
             total += d.getPrice();
         }
         System.out.println("This comes to a total price of: " + total);

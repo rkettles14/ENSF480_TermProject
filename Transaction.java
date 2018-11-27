@@ -81,5 +81,6 @@ public class Transaction {
         System.out.println("Customer name: " + customerName);
         System.out.println("Date of transaction: " + date.toString());
         System.out.println("Biling info of customer: " + billingInfo);
+        System.out.println();
     }
 }

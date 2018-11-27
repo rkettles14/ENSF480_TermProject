@@ -83,5 +83,6 @@ public abstract class Document {
         System.out.println("Path to document: " + path);
         System.out.println("ISBN: " + isbn);
         System.out.println("Remaining Stock: " + stockCount);
+        System.out.println();
     }
 }

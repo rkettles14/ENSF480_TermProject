@@ -9,18 +9,71 @@
  * @author CHUCK
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class RegisteredBuyer extends Buyer implements Observer{
     
     private Subject notifier;
     private ArrayList<Promotion> promotions;
-
+    private Scanner scan;
+    
     public RegisteredBuyer() {
         super();
         promotions = new ArrayList<Promotion>();
+        File file = new File("PromotionsList.txt"); 
+        try {
+            scan = new Scanner(file);
+        } 
+        catch (FileNotFoundException ex) {
+           ex.printStackTrace();
+        }
+        BuyerNotifier bn = new BuyerNotifier();
+        bn.register(this);
+        this.setSubject(bn);
+        initializePromos();
+        //bn.addPromotion(new Promotion(promos, 0.8));
     }
     
+    @Override
+    public void makePayment(){
+        System.out.println("These are all of the items in your cart: ");
+        double total = 0;
+        
+        for(Document d : getCart()){
+        	boolean isDiscounted = false;
+            d.display();
+            for(int i = 0; i < promotions.size(); i++) {
+            	for(int j = 0; j < promotions.get(i).getProducts().size(); j++)
+            	{
+            		if(d.getIsbn() == promotions.get(i).getProducts().get(j).getIsbn()) {
+            			total += d.getPrice()*promotions.get(i).getDiscount();
+            			isDiscounted = true;
+            			break;
+            			
+            		}
+            		
+            	   
+            	}
+            }
+            if(!isDiscounted)
+            	total += d.getPrice();
+        }
+        System.out.println("This comes to a total price of: " + total);
+        System.out.println("Please enter your credit card nmber");
+        int cardNum = Integer.parseInt(stdin.nextLine());
+        System.out.println("Please enter the name on your card: ");
+        String name = stdin.nextLine();
+        System.out.println("Please enter your billing address: ");
+        String billingInfo = stdin.nextLine();
+        
+        Transaction t = new Transaction(this.getCart(), cardNum, total, name, billingInfo);
+        System.out.println("\n\nCreated new transaction: \n");
+        t.display();
+        this.setCart(new ArrayList<>());
+    }
     
         public void showOptions() {
         while(notquit){
@@ -53,13 +106,7 @@ public class RegisteredBuyer extends Buyer implements Observer{
                 }
                 
                 else if(input.matches("4")) {
-                	 BuyerNotifier bn = new BuyerNotifier();
-                     bn.register(this);
-                     this.setSubject(bn);
-                     Book book = new Book("Cool Books r Cool", "Dick Cockfield", 69.69, 10, "Yermumshouse", 69);
-                     ArrayList<Document> promos = new ArrayList<>();
-                     promos.add(book);
-                     bn.addPromotion(new Promotion(promos, 0.8));
+                	 
                      this.browsePromotions();
                 	break;
                 }
@@ -97,6 +144,23 @@ public class RegisteredBuyer extends Buyer implements Observer{
         System.out.println("You have sucessfully unsibscribed. Your card will no longer be charged");
         b.showOptions();
     }
+    
+    public void initializePromos()
+    {
+    	while(scan.hasNextLine()){
+    		 ArrayList<Document>promos = new ArrayList<Document>();
+    		int discounts = scan.nextInt();
+    		for(int i = 0; i < discounts; i++)
+    		{
+    			int target = scan.nextInt();
+    			Document d = instance.getDatabase().searchForDocument(target);
+    			promos.add(d);
+    		}
+            double deal = scan.nextDouble();
+    		Promotion promo = new Promotion(promos, deal);
+            promotions.add(promo);
+            }
+        }
     
     public static void main(String []args){
         RegisteredBuyer rb = new RegisteredBuyer();
