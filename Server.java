@@ -1,4 +1,9 @@
 import java.util.Vector;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Server {
@@ -32,8 +37,8 @@ public class Server {
     {
     	for(int i = 0; i < users.size(); i++)
     	{
-    		if(username == users.get(i).getUsername())
-    			if(password == users.get(i).getPassword())
+    		if(username.equals(users.get(i).getUsername()))
+    			if(password.equals(users.get(i).getPassword()))
     				return users.get(i);
     	}
     	System.out.println("Invalid Username/Password");
@@ -53,13 +58,92 @@ public class Server {
         return instance;
     }
     
-    public void run()
+    public static void main(String [] args) throws IOException
     {
     	
-    }
+
+    	//BETTER IMPLEMENTATION OF SERVER WITH LOGIN
+    	
+        Server server = new Server();
+    	int choice = 0;
+    	User user;
+    	
+    	//SETUP
+    	File file = new File("Users.txt");
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String st;
+			while((st = br.readLine()) != null)
+			{
+				String[] parts = st.split("-");
+				if(parts[0].equals("o"))
+				{
+					
+					user = new Operator();
+					user.setUsername(parts[1]);
+					user.setPassword(parts[2]);
+					server.users.add(user);
+				}
+				if(parts[0].equals("r"))
+				{
+					user = new RegisteredBuyer();
+					user.setUsername(parts[1]);
+					user.setPassword(parts[2]);
+					server.users.add(user);
+				}
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	//PROGRAM START
+    	System.out.println("Welcome to the sunshine tropical paradise of Isle Delfino"
+    			+ "\n all inputs and options will be dealt with by entering a number to select an option unless otherwise stated...");
+    	//INITIAL OPTIONS
+    	
+    	
+    		choice = server.loopForInput(2,  "Please select an option:"
+    				+ "\nView as Buyer (1)"
+    				+ "\nLogin (2)");
+    	//registered Buyer
+    	if(choice == 1) {
+    		user = new Buyer();
+    	}
+    	else if(choice == 2)
+    	{
+    		
+    		System.out.println("Please enter your username:");
+    		String username = server.stdin.next();
+    		
+    		
+    		System.out.println("Please enter your password:");
+    		String password = server.stdin.next();
+    		
+    		
+    		user = server.validate(username, password);
+    		
+    		while(user == null)
+    		{
+    			System.out.println("Please enter your username:");
+        		username = server.stdin.next();
+        		
+        		System.out.println("Please enter your password:");
+        		password = server.stdin.next();
+        		user = server.validate(username, password);
+    		}
+    	}
+    	
+    	else //SHOULD NEVER GET HERE
+    		user = new Buyer();
+    	
+    	user.showOptions();
     
-    public static void main(String [] args)
-    {
+    	//////////////////////////////////////////////////////////////////////////////////
+    	
+    	//OLD VERSION OF SERVER
+    	/*
     	String username;
     	String password;
         Server server = new Server();
@@ -110,7 +194,7 @@ public class Server {
     	else 
     		user = new Buyer();
     	user.showOptions();
-    
+    */
     	
     }
 
