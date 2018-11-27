@@ -27,6 +27,7 @@ public class RegisteredBuyer extends Buyer implements Observer{
             System.out.println("Enter 1 to search for document.");
             System.out.println("Enter 2 to make payment.");
             System.out.println("Enter 3 to unregister");
+            System.out.println("Enter 4 to view promotions list");
             System.out.println("Enter 'Q' to quit");
             String input = stdin.nextLine();
             if(input.matches("Q")){
@@ -51,6 +52,17 @@ public class RegisteredBuyer extends Buyer implements Observer{
                     break;
                 }
                 
+                else if(input.matches("4")) {
+                	 BuyerNotifier bn = new BuyerNotifier();
+                     bn.register(this);
+                     this.setSubject(bn);
+                     Book book = new Book("Cool Books r Cool", "Dick Cockfield", 69.69, 10, "Yermumshouse", 69);
+                     ArrayList<Document> promos = new ArrayList<>();
+                     promos.add(book);
+                     bn.addPromotion(new Promotion(promos, 0.8));
+                     this.browsePromotions();
+                	break;
+                }
                 else{
                     System.out.println("invalid input.");
                     break;
